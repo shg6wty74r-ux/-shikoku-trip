@@ -1,0 +1,325 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>林くん四国爆走旅</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<style>
+:root{--bg:#fff1c9;--card:#fff;--ink:#2a2340;--sea:#7fd0e8;--pri:#e8453c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241f3a;--card:#352e55;--ink:#fff4d6;--sea:#2b5d78}}
+:root[data-theme="dark"]{--bg:#241f3a;--card:#352e55;--ink:#fff4d6;--sea:#2b5d78}
+*{box-sizing:border-box}body{margin:0;background:var(--bg) radial-gradient(circle at 1px 1px,rgba(120,80,20,.14) 1.5px,transparent 0) 0 0/14px 14px;color:var(--ink);font:500 16px/1.6 "Zen Maru Gothic",system-ui,sans-serif}
+h1{font:clamp(26px,7vw,44px)/1.1 "Dela Gothic One",sans-serif;margin:0;color:var(--pri);text-shadow:2px 2px 0 #ffd23f}
+main{max-width:760px;margin:0 auto;padding:12px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.warn{font-size:12px;background:#ffd23f;color:#2a2340;border-radius:8px;padding:4px 10px;margin:6px 0}
+svg.b{width:100%;height:auto;display:block;border:4px solid var(--ink);border-radius:16px;background:var(--sea)}
+.car{transition:transform .24s cubic-bezier(.34,1.3,.64,1)}.act .in{animation:bn .6s ease-in-out infinite alternate}@keyframes bn{to{transform:translateY(-4px)}}
+.btn{font:700 17px inherit;border:3px solid var(--ink);background:var(--pri);color:#fff;border-radius:14px;padding:10px 20px;min-height:48px;box-shadow:0 4px 0 var(--ink);cursor:pointer}
+.btn:disabled{opacity:.5}.btn.g{background:var(--card);color:var(--ink)}
+.row{display:flex;gap:10px;align-items:center;justify-content:center;margin:12px 0;flex-wrap:wrap}
+#dice{font-size:60px;line-height:1;width:80px;height:80px;display:grid;place-items:center;background:#fff;color:#222;border:3px solid var(--ink);border-radius:16px}
+#dice.sp{animation:sp .3s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.pl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pc{background:var(--card);border:4px solid;border-radius:12px;padding:6px 8px;font-size:13px}.pc.on{box-shadow:0 0 0 4px #ffd23f}
+#log{font-size:13px;background:var(--card);border-radius:10px;padding:8px;margin-top:10px;min-height:60px}
+.ov{position:fixed;inset:0;display:none;place-items:center;background:rgba(30,20,60,.7);z-index:30;padding:16px}
+.pp{background:var(--card);border:4px solid var(--ink);border-radius:18px;padding:18px;max-width:420px;width:100%;text-align:center}
+.pp h2{margin:0 0 6px}.pp .row .btn{padding:8px 14px}
+#op{display:grid;background:linear-gradient(#7fd0e8,#fff1c9);color:#2a2340;text-align:center;z-index:40;overflow:hidden}
+#op .run{animation:run 3.2s ease-in-out forwards;position:absolute;bottom:14%;left:0}
+@keyframes run{from{transform:translateX(-120px)}to{transform:translateX(110vw)}}
+.cf{position:fixed;top:-20px;width:10px;height:14px;z-index:60;animation:fall 3.5s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+@media(prefers-reduced-motion:reduce){#op .run{animation:none;left:40%}.car,.act .in{transition:none;animation:none}#dice.sp{animation:none}.cf{display:none}}
+.sign{background:#e8453c;border:4px solid #2a2340;border-radius:18px;padding:10px 14px;position:relative;box-shadow:0 5px 0 #2a2340}
+.sign::before{content:"";position:absolute;inset:4px;border:4px dotted #ffd23f;border-radius:13px;pointer-events:none;animation:bulb 1.2s steps(2) infinite}@keyframes bulb{50%{border-color:#fff}}
+.sign h1{color:#fff;text-shadow:2px 2px 0 #2a2340;position:relative}.sign .btn{position:relative;padding:6px 12px;min-height:40px;font-size:14px}
+.btn:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+#roll{font-size:22px;padding:14px 28px;background:linear-gradient(#ff7a59,#e8453c);border-radius:40px}
+#dice{box-shadow:0 6px 0 var(--ink),inset 0 -6px 0 #ddd;font-size:64px}#dice.sp{animation:tum .5s ease-in-out infinite}
+@keyframes tum{0%{transform:translateY(0) rotate(0)}40%{transform:translateY(-24px) rotate(200deg)}70%{transform:translateY(0) rotate(320deg) scale(1.1,.88)}100%{transform:translateY(0) rotate(360deg)}}
+svg.b{box-shadow:0 6px 0 var(--ink);border-width:5px}.pc{box-shadow:3px 3px 0 var(--ink)}#log{border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.car use{filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff)}
+.ov{background:radial-gradient(circle,rgba(255,255,255,.25),rgba(30,20,60,.82))}
+.pp{--c:#7b4dd9;overflow:hidden;animation:pin .35s cubic-bezier(.3,1.5,.5,1);box-shadow:0 8px 0 var(--ink)}@keyframes pin{from{transform:scale(.6) rotate(-5deg);opacity:0}}
+.pp h2{background:var(--c);color:#fff;margin:-18px -18px 14px;padding:12px;border-bottom:4px solid var(--ink);font-size:22px}
+#op{background:repeating-conic-gradient(#ffd23f 0 10deg,#fff1c9 10deg 20deg)}#op #go{animation:bl 1s steps(2) infinite}@keyframes bl{50%{filter:brightness(1.2)}}
+.gb{position:fixed;inset:0;display:grid;place-items:center;z-index:70;pointer-events:none}.gb b{font:clamp(48px,16vw,120px) "Dela Gothic One",sans-serif;color:#ffd23f;-webkit-text-stroke:3px #2a2340;text-shadow:5px 5px 0 #e8453c;animation:gbk 2.2s ease-out forwards}
+@keyframes gbk{0%{transform:scale(0) rotate(-10deg)}20%{transform:scale(1.2) rotate(3deg)}30%{transform:scale(1)}85%{opacity:1}100%{transform:scale(1.1);opacity:0}}
+.warn{font-size:11px;opacity:.75;background:none;color:var(--ink);text-align:center;margin-top:12px}
+@media(max-width:600px){main{padding:8px 6px}.sign h1{font-size:26px}}
+@media(prefers-reduced-motion:reduce){.pp,#dice.sp,.sign::before,#op #go,.gb b{animation:none}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<g id="c0"><ellipse rx="17" ry="8" fill="#e8453c" stroke="#2a2340" stroke-width="2.5"/><path d="M-8-6Q0-15 8-6Z" fill="#fff" stroke="#2a2340" stroke-width="2.5"/><circle cx="-10" cy="8" r="4.5" fill="#2a2340"/><circle cx="10" cy="8" r="4.5" fill="#2a2340"/></g>
+<g id="c1"><rect x="-17" y="-10" width="34" height="18" rx="3" fill="#2f6fdb" stroke="#2a2340" stroke-width="2.5"/><rect x="-13" y="-7" width="11" height="7" fill="#fff"/><rect x="1" y="-7" width="11" height="7" fill="#fff"/><circle cx="-10" cy="9" r="4.5" fill="#2a2340"/><circle cx="10" cy="9" r="4.5" fill="#2a2340"/></g>
+<g id="c2"><path d="M-18-2H-4L0-10H9L13-2H18V7H-18Z" fill="#f2b01e" stroke="#2a2340" stroke-width="2.5" stroke-linejoin="round"/><rect x="-16" y="-6" width="10" height="4" fill="#9a6a10"/><circle cx="-10" cy="8" r="4.5" fill="#2a2340"/><circle cx="11" cy="8" r="4.5" fill="#2a2340"/></g></defs></svg>
+<main>
+<div class="bar sign"><h1>林くん<br>四国爆走旅</h1><button class="btn g" id="rs">もう一度</button></div>
+
+<svg class="b" viewBox="120 -75 410 360" role="img" aria-label="四国すごろく盤">
+<defs><clipPath id="cp"><path id="lp" d="M460,50L520,48L582,68L590,92L575,118L572,150L555,185L520,225L500,270L490,325L470,318L440,290L400,262L375,252L350,256L318,268L290,300L262,350L250,420L241,462L222,450L195,425L165,418L140,380L128,338L95,335L60,318L22,300L40,278L62,262L95,225L130,190L165,160L190,148L222,128L232,106L250,108L275,125L310,122L350,92L385,78L420,60Z"/></clipPath></defs>
+<g clip-path="url(#cp)"><path fill="#ffc48a" d="M0,345L128,338L230,262L310,190L345,150L385,78L385,-100L0,-100Z"/><path fill="#9fe0a8" d="M0,345L128,338L230,262L310,190L345,150L400,172L480,200L538,215L700,600L0,600Z"/><path fill="#fff08a" d="M385,78L345,150L400,172L470,150L520,50L520,-100L385,-100Z"/><path fill="#a8d4ff" d="M520,50L470,150L400,172L480,200L538,215L700,215L700,-100L520,-100Z"/></g>
+<use href="#lp" fill="none" stroke="#2a2340" stroke-width="4" stroke-linejoin="round"/>
+<g fill="none" stroke="#2a2340" stroke-width="1.5" stroke-dasharray="4 3" opacity=".5"><path d="M128,338L230,262L310,190L345,150L385,78M345,150L400,172L470,150L520,50M400,172L480,200L538,215"/></g>
+<path fill="#c9e8a0" stroke="#2a2340" stroke-width="4" d="M100,-90H540V-30Q490,-20 450,-24Q380,-34 330,-28L100,-30Z"/>
+<g font-weight="800" fill="#2a2340" stroke="#fff" stroke-width="3" paint-order="stroke" text-anchor="middle"><text x="95" y="268" font-size="15">愛媛</text><text x="255" y="310" font-size="15">高知</text><text x="415" y="108" font-size="15">香川</text><text x="520" y="160" font-size="15">徳島</text><text x="400" y="-50" font-size="14">岡山</text></g>
+<g font-size="10" font-weight="700" fill="#2a2340" opacity=".55" font-style="italic"><text x="330" y="30">瀬戸内海</text><text x="390" y="340">太平洋</text></g>
+<path id="pth" fill="none" stroke="#3b3355" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path id="pth2" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+<g id="cells"></g><circle id="pg" r="13" fill="none" stroke="#fff" stroke-width="4" opacity="0" style="transform-box:fill-box;transform-origin:center"/><g id="cars"></g></svg>
+<div class="row"><div id="dice">🎲</div><button class="btn" id="roll">サイコロを振る</button></div>
+<div id="turn" style="text-align:center;font-weight:700"></div><div class="pl" id="pl"></div><div id="log"></div><div class="warn">STEP 1 確認版:進行はこの端末の中だけで動きます(クラウド同期はSTEP 4)。ゲームの結果は旅行の費用や旅程に影響しません。</div></main>
+<div class="ov" id="pop"><div class="pp"><h2 id="pt"></h2><div id="pb"></div><div class="row" id="pbtn"></div></div></div>
+<div class="ov" id="op" style="display:grid"><div style="align-self:center"><h1 style="font-size:clamp(34px,10vw,72px)">林くん<br>四国爆走旅</h1><p style="font-weight:700;letter-spacing:.15em">3 FRIENDS · GO TO OKAYAMA</p><button class="btn" id="go">スタート</button> <button class="btn g" id="sk">スキップ</button></div>
+<svg class="run" width="70" height="36" viewBox="-20 -12 40 24"><use href="#c0"/></svg><svg class="run" style="animation-delay:.4s;bottom:22%" width="70" height="36" viewBox="-20 -12 40 24"><use href="#c1"/></svg><svg class="run" style="animation-delay:.8s;bottom:30%" width="70" height="36" viewBox="-20 -12 40 24"><use href="#c2"/></svg></div>
+<script id="lg">
+// ===== ゲームロジック(画面に依存しない部品。後でサーバー側にそのまま移せる) =====
+// 設定: ここを書き換えれば、ターン数・確率・文言を変えられます
+const CFG={MAX_ROUNDS:10,CHANCE:.2};// 1ラウンド=3人が1回ずつ
+const CELLS=[["高知駅","s",350,244],["桂浜","n",382,262],["はりまや橋","n",335,232],["ひろめ市場","f",305,215],["久万高原","q",265,190],["道後温泉","l",190,170],["松山城","n",210,150],["みかん畑","f",215,130],["今治タオル","n",237,112],["来島海峡大橋","r",272,100],["新居浜","n",305,118],["観音寺","q",375,82],["丸亀城","n",415,65],["讃岐うどん","f",440,62],["高松","n",460,50],["屋島","o",495,44],["瀬戸大橋","n",480,10],["児島","l",465,-14],["倉敷","n",445,-30],["岡山駅","g",432,-48]];
+const GOAL=CELLS.length-1;
+// イベントの文言: [タイトル, 説明]。d=進むマス数(マイナスは戻る)。行を足すだけで増やせます
+const EVENTS={f:{i:"🍜",d:1,L:[["かつおのたたき","高知名物!わら焼きの香りにみんなごきげん。"],["鯛めし","愛媛の郷土料理をぺろり。"],["骨付鳥","香川のスパイシーな味に元気100倍!"],["徳島ラーメン","濃いめのスープでパワー充填!"]]},
+l:{i:"🍀",d:2,L:[["道後の湯でぽかぽか","追い風を受けて快調!"],["遍路道でお接待","親切にパワーアップ!"],["瀬戸内の夕日","景色にみとれて気分上々!"]]},
+r:{i:"🚀",d:3,L:[["ロケット発進!","しまなみ海道を一気に駆け抜ける!"],["快速ルート発見","高速道路がすいすい!"]]},
+o:{i:"🌀",d:-1,L:[["道に迷った","うどん屋の行列で足止め…"],["おみやげ買いすぎ","荷物が重くて少しもどる…"],["フェリーを乗りまちがえ","ちょっと遠回り…"]]}};
+// クイズ: [問題,[選択肢],正解の番号]
+const QUIZ=[["かつおのたたきを焼くときに使う昔ながらの燃料は?",["わら","石炭","ガス"],0],["道後温泉本館があるのは何県?",["香川県","愛媛県","徳島県"],1],["さぬきうどんで有名なのは何県?",["香川県","高知県","愛媛県"],0],["鳴門の渦潮が見られるのは何県?",["徳島県","愛媛県","高知県"],0],["瀬戸大橋は香川県と何県をつなぐ?",["広島県","岡山県","兵庫県"],1],["今治が産地として有名なのは?",["タオル","漆器","和紙"],0],["高知出身の幕末の志士は?",["坂本龍馬","西郷隆盛","勝海舟"],0],["高知の清流として有名な川は?",["四万十川","信濃川","利根川"],0]];
+const newState=()=>({seq:0,turn:0,pos:[0,0,0],done:[0,0,0],q:[],pend:null,over:null});
+// 状態遷移: action.seq が現在の seq と違えば無視(二重実行の防止)。乱数は action が持つ(サーバー検証用)
+function reduce(S,a){if(!a||a.seq!==S.seq||S.over)return null;S=JSON.parse(JSON.stringify(S));S.seq++;const fx=[],p=S.turn%3;
+const mv=d=>{const from=S.pos[p],to=Math.max(0,Math.min(GOAL,from+d));S.pos[p]=to;if(to==GOAL)S.done[p]=1;fx.push({t:"move",p,from,to})};
+if(a.type=="roll"){if(S.pend)return null;fx.push({t:"dice",p,n:a.n});mv(a.n);S.q=[];const k=CELLS[S.pos[p]][1];
+if(!S.done[p]){if("fqlro".includes(k))S.q.push(k);if(a.n==6)S.q.push("fqlro"[a.b%5]);else if(k=="n"&&a.r<CFG.CHANCE)S.q.push("flo"[a.b%3])}}
+else if(a.type=="answer"){if(S.pend==null)return null;const q=QUIZ[S.pend],ok=a.i==q[2];fx.push({t:"result",p,ok,ans:q[1][q[2]]});S.pend=null;if(ok)mv(2)}else return null;
+while(S.q.length&&!S.done[p]){const k=S.q.shift();if(k=="q"){S.pend=a.qi%QUIZ.length;fx.push({t:"quiz",p,qi:S.pend});return{S,fx}}const E=EVENTS[k];fx.push({t:"ev",p,k,v:a.v%E.L.length});mv(E.d)}
+S.q=[];if(S.done.every(Boolean))S.over="win";else{do{S.turn++}while(S.done[S.turn%3]);if(S.turn>=CFG.MAX_ROUNDS*3)S.over="time"}
+fx.push({t:"end"});return{S,fx}}
+const rnd=()=>({n:1+(Math.random()*6|0),b:Math.random()*60|0,r:Math.random(),v:Math.random()*60|0,qi:Math.random()*60|0});
+</script>
+<script>
+const $=s=>document.querySelector(s),wt=ms=>new Promise(r=>setTimeout(r,ms)),RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const PL=[{n:"まさみ",c:"#e8453c",b:"み"},{n:"まさき",c:"#2f6fdb",b:"き"},{n:"はやと",c:"#f2b01e",b:"と"}],EM={s:"🏁",f:"🍜",q:"❓",l:"🍀",r:"🚀",o:"🌀",g:"🚉",n:""},BG={s:"#fff",f:"#ff9f43",q:"#a77bff",l:"#4cd68a",r:"#ff5a5a",o:"#b8b8c8",g:"#ffd23f",n:"#fff"};
+let S,view,busy;
+["#pth","#pth2"].forEach(s=>$(s).setAttribute("d","M"+CELLS.map(c=>c[2]+","+c[3]).join("L")));
+$("#cells").innerHTML=CELLS.map((c,i)=>`<circle cx="${c[2]}" cy="${c[3]}" r="13.5" fill="${BG[c[1]]}" stroke="#2a2340" stroke-width="3"/><text x="${c[2]}" y="${c[3]+5}" font-size="${EM[c[1]]?15:11}" text-anchor="middle" font-weight="700" fill="#2a2340">${EM[c[1]]||i}</text>`).join("");
+$("#cars").innerHTML=PL.map((p,i)=>`<g class="car" id="car${i}"><g class="in"><ellipse cy="12" rx="17" ry="4" fill="#000" opacity=".25"/><use href="#c${i}"/><circle cy="-17" r="8" fill="${p.c}" stroke="#2a2340" stroke-width="2.5"/><text y="-13.5" font-size="10" font-weight="800" text-anchor="middle" fill="${i==2?"#2a2340":"#fff"}">${p.b}</text></g></g>`).join("");
+const SL=[[-15,-19],[15,-19],[0,19]],place=i=>{const c=CELLS[view[i]];$("#car"+i).style.transform=`translate(${c[2]+SL[i][0]}px,${c[3]+SL[i][1]}px)`};
+const log=t=>{const d=document.createElement("div");d.textContent=t;$("#log").prepend(d);while($("#log").children.length>5)$("#log").lastChild.remove()};
+function ui(){const p=S.turn%3;$("#pl").innerHTML=PL.map((q,i)=>`<div class="pc ${i==p&&!S.over?"on":""}" style="border-color:${q.c}"><b>${q.n}</b><br>${S.done[i]&&view[i]==19?"🏁ゴール!":CELLS[view[i]][0]}</div>`).join("");
+PL.forEach((_,i)=>$("#car"+i).classList.toggle("act",i==p&&!S.over));$("#turn").textContent=S.over?"ゲーム終了":`${PL[p].n}の番(${Math.floor(S.turn/3)+1}/${CFG.MAX_ROUNDS}ラウンド)`;$("#roll").disabled=busy||!!S.over}
+function init(){S=newState();view=[0,0,0];busy=false;$("#log").innerHTML="";PL.forEach((_,i)=>place(i));log("スタート!サイコロを振って岡山駅をめざそう。");ui()}
+function pop(t,b,btns=["OK"],col="#7b4dd9"){return new Promise(r=>{$(".pp").style.setProperty("--c",col);$("#pt").innerHTML=t;$("#pb").innerHTML=b;$("#pbtn").innerHTML=btns.map((x,i)=>`<button class="btn" data-i="${i}">${x}</button>`).join("");$("#pop").style.display="grid";$("#pbtn").onclick=e=>{const i=e.target.dataset.i;if(i==null)return;$("#pbtn").onclick=null;$("#pop").style.display="none";r(+i)}})}
+const hop=i=>$("#car"+i).querySelector(".in").animate([{transform:"translateY(0)"},{transform:"translateY(-12px) scale(1.1)"},{transform:"translateY(0)"}],{duration:260});
+function ping(i){const c=CELLS[view[i]],g=$("#pg");g.setAttribute("cx",c[2]);g.setAttribute("cy",c[3]);g.animate([{transform:"scale(1)",opacity:.9},{transform:"scale(2.3)",opacity:0}],{duration:450})}
+// ゴール演出の差し込み口:ここを書き換えれば演出を豪華にできます
+function goalBanner(){const d=document.createElement("div");d.className="gb";d.innerHTML="<b>GOAL!</b>";document.body.appendChild(d);return wt(RM?600:2200).then(()=>d.remove())}
+async function play(fx){for(const f of fx){const P=PL[f.p]?.n;
+if(f.t=="dice"){const d=$("#dice");d.classList.add("sp");for(let i=0;i<7;i++){d.textContent=String.fromCodePoint(9855+(1+Math.random()*6|0));await wt(RM?30:100)}d.classList.remove("sp");d.textContent=String.fromCodePoint(9855+f.n);if(!RM)d.animate([{transform:"scale(1.35)"},{transform:"scale(.92)"},{transform:"scale(1)"}],{duration:320});log(P+":"+f.n+"が出た!");await wt(RM?0:250)}
+else if(f.t=="move"){const s=f.to>f.from?1:-1;while(view[f.p]!=f.to){view[f.p]+=s;place(f.p);ui();if(!RM){hop(f.p);ping(f.p);await wt(260)}}if(f.to==19)log("🏁 "+P+"が岡山駅に到着!")}
+else if(f.t=="ev"){const E=EVENTS[f.k],L=E.L[f.v];log(P+":"+L[0]+"("+(E.d>0?"+":"")+E.d+")");await pop(E.i+" "+L[0],L[1]+`<br><b>${E.d>0?"+":""}${E.d}マス</b>`,["OK"],BG[f.k])}
+else if(f.t=="quiz"){const q=QUIZ[f.qi],o=q[1].map((t,i)=>[t,i]).sort(()=>Math.random()-.5),a=await pop("❓ 四国クイズ",q[0],o.map(x=>x[0]),"#a77bff");await dispatch({type:"answer",seq:S.seq,i:o[a][1],...rnd()});return}
+else if(f.t=="result")await pop(f.ok?"⭕ 正解!(+2)":"❌ ざんねん","答えは「"+f.ans+"」",["OK"],f.ok?"#2fb872":"#7a7a8c")}}
+async function dispatch(a){const r=reduce(S,a);if(!r)return;S=r.S;await play(r.fx);view=[...S.pos];view.forEach((_,i)=>place(i));ui()}
+async function roll(){if(busy||S.over)return;busy=true;ui();await dispatch({type:"roll",seq:S.seq,...rnd()});
+if(S.over=="win"){await goalBanner();for(let i=0;i<70;i++){const d=document.createElement("div");d.className="cf";d.style.cssText=`left:${Math.random()*100}vw;background:hsl(${Math.random()*360} 90% 55%);animation-delay:${Math.random()*1.5}s`;document.body.appendChild(d);setTimeout(()=>d.remove(),6000)}await pop("🎊 全員ゴール!",`3台が岡山駅に到着!<br>${Math.floor(S.turn/3)+1}ラウンド目で四国を走りきりました。<br>いい旅になりますように!`)}
+else if(S.over=="time")await pop("⏰ タイムアップ","まだゴールできていない車がいます。もう一度挑戦しよう!");
+busy=false;ui()}
+$("#roll").onclick=roll;$("#rs").onclick=async()=>{if(busy)return;if(await pop("もう一度","最初からやり直しますか?(旅行の記録には影響しません)",["やり直す","やめる"])==0)init()};
+const close=()=>$("#op").style.display="none";$("#go").onclick=$("#sk").onclick=close;if(!RM)setTimeout(close,5000);init();
+</script><main id="v-itin" hidden></main><main id="v-book" hidden></main><main id="v-bud" hidden></main>
+<nav id="bn"><button data-v="home" class="on">🎲<span>ホーム</span></button><button data-v="itin">🗓️<span>旅程</span></button><button data-v="book">🎫<span>予約</span></button><button data-v="bud">💰<span>予算</span></button></nav>
+<dialog id="fd"><form id="ff"></form></dialog><div id="tt" style="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#2a2340;color:#fff;padding:10px 16px;border-radius:10px;z-index:80;display:none;max-width:90vw"></div>
+<style>
+body{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+#bn{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:var(--card);border-top:4px solid var(--ink);padding-bottom:env(safe-area-inset-bottom,0px)}
+#bn button{flex:1;border:0;background:none;color:var(--ink);font-size:22px;padding:6px 0;min-height:58px;display:flex;flex-direction:column;align-items:center;cursor:pointer}#bn span{font:700 11px inherit}#bn .on{background:#ffd23f;color:#2a2340}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 2px}.tabs .btn{padding:6px 14px;min-height:44px;font-size:15px;white-space:nowrap}.tabs .btn.on{background:var(--pri);color:#fff}
+.ic{background:var(--card);border:3px solid var(--ink);border-radius:12px;padding:10px 12px;margin:10px 0;box-shadow:3px 3px 0 var(--ink);font-size:15px}
+.ic.p{border-style:dashed;border-color:#d99a00;background:repeating-linear-gradient(45deg,transparent 0 8px,rgba(255,210,63,.18) 8px 16px),var(--card)}.ic.t{border-style:dotted;opacity:.85}
+.bg{font-size:12px;font-weight:700;border-radius:6px;padding:1px 8px;color:#fff;margin-left:6px}.bc{background:#2fb872}.bp{background:#d99a00}.bt{background:#777}
+.tm{font:700 14px monospace;color:var(--pri)}.dt{font-size:14px;border-top:1px dashed var(--ink);margin-top:6px;padding-top:6px}.mut{opacity:.65}.ic .row{justify-content:flex-start;margin:6px 0 0}.ic .btn{padding:4px 10px;min-height:38px;font-size:14px;box-shadow:0 2px 0 var(--ink)}
+dialog{width:min(92vw,460px);background:var(--card);color:var(--ink);border:4px solid var(--ink);border-radius:14px;padding:14px}dialog label{display:block;font-weight:700;font-size:13px;margin-top:8px}
+dialog input,dialog select,dialog textarea{width:100%;font:16px inherit;padding:8px;border:2px solid var(--ink);border-radius:8px;background:var(--bg);color:var(--ink)}
+.kv{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:2px 0}.kv b{text-align:right}.pos{color:#1f9d5c}.neg{color:var(--pri)}
+.pbar{height:18px;border:3px solid var(--ink);border-radius:10px;background:var(--bg);overflow:hidden;margin-top:8px}.pbar i{display:block;height:100%;background:#2fb872}.pbar.over i{background:var(--pri)}
+.cb{height:10px;border:2px solid var(--ink);border-radius:6px;background:#ffd23f;margin:0 0 8px;min-width:4px}
+.lb{font-weight:700;font-size:13px;margin-top:8px}.chk{display:flex;gap:14px;flex-wrap:wrap}.chk label{display:flex;align-items:center;gap:6px;font-size:16px;margin:0}.chk input{width:22px;height:22px}
+#v-bud h3{margin:14px 2px 0}#v-bud:not([hidden]){padding-bottom:100px}
+#v-bud .ic{animation:cin .3s ease-out both}@keyframes cin{from{opacity:0;transform:translateY(8px)}}
+.hero{background:var(--card);border:4px solid var(--ink);border-radius:16px;padding:12px 14px;margin:10px 0;box-shadow:0 5px 0 var(--ink)}
+.big{font:clamp(30px,10vw,44px)/1.2 "Dela Gothic One",sans-serif;color:#1f9d5c}.hero.warn .big{color:#c98a00}.hero.over .big{color:var(--pri)}
+.meter{position:relative;height:22px;border:3px solid var(--ink);border-radius:12px;background:var(--bg);margin:18px 0 8px}
+.meter i{display:block;height:100%;border-radius:9px;background:#2fb872;animation:gr .8s ease-out}.hero.warn .meter i{background:#ffb703}.hero.over .meter i{background:var(--pri)}
+.meter em{position:absolute;top:-17px;transform:translateX(-75%);font-style:normal;font-size:24px;animation:dr .8s ease-out}
+@keyframes gr{from{width:0}}@keyframes dr{from{left:0}}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mini{margin:6px 0!important;padding:8px 4px!important;text-align:center;font-size:13px;line-height:1.35}.mini small{display:block;opacity:.65;font-size:11px;margin-top:3px}
+.dh{display:flex;justify-content:space-between;font-size:15px;border-bottom:3px solid var(--ink);padding-bottom:2px}
+.tb{width:100%;border-collapse:collapse;font-size:13px}.tb th,.tb td{padding:6px 3px;text-align:right;border-bottom:1px dashed var(--ink)}.tb th:first-child,.tb td:first-child{text-align:left}.tb th{font-size:11px;opacity:.7}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.chip{position:relative;margin:0}
+.chip input{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;margin:0}
+.chip span{display:block;min-height:44px;padding:9px 12px;border:3px solid var(--ink);border-radius:12px;background:var(--bg);font-weight:700;font-size:15px}
+.chip input:checked+span{background:#ffd23f;color:#2a2340;box-shadow:0 3px 0 var(--ink)}
+#xa{font-size:26px;font-weight:700;text-align:right}.pv{font-weight:700;color:#1f9d5c;min-height:1.5em;margin:6px 0}
+dialog{max-height:90vh;overflow:auto}
+.msg{border:3px solid var(--ink);border-radius:12px;padding:10px 12px;margin:10px 0;font-weight:700;animation:cin .3s ease-out}.msg.ok{background:#d6f5df;color:#14532d}.msg.ng{background:#ffd9d6;color:#7a1410}.msg.info{background:#fff3c4;color:#5b4300}
+#v-bud .bk,#v-bud .bk2{padding:12px 14px}#v-bud .bk{border-left-width:12px;border-left-color:#2f6fdb}#v-bud .bk2{border-left-width:12px;border-left-color:#e8453c}
+#v-bud .bk h3,#v-bud .bk2 h3{margin:0 0 6px}#v-bud .bk h3 small,#v-bud .bk2 h3 small{font-size:13px;opacity:.7;margin-left:6px}#v-bud .bk p,#v-bud .bk2 p{margin:6px 0}
+#v-bud .bk .btn,#v-bud .bk2 .btn{display:block;width:100%;min-height:44px;margin-top:10px;text-align:center}.fl{position:relative;overflow:hidden}.fl input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+#v-bud textarea{width:100%;font:12px/1.4 monospace;padding:8px;border:2px solid var(--ink);border-radius:8px;background:var(--bg);color:var(--ink)}
+.fab{position:fixed;right:16px;bottom:calc(74px + env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;font-size:30px;padding:0;z-index:25;animation:fp 2s ease-in-out infinite}@keyframes fp{50%{transform:scale(1.07)}}
+@media(prefers-reduced-motion:reduce){#v-bud .ic,.meter i,.meter em,.fab{animation:none}}
+</style>
+<script id="bkp">
+// ===== バックアップ(画面に依存しない部品) =====
+const BK_APP="hayashi-shikoku-trip",BK_FMT=1;
+const bkHash=s=>{let x=2166136261;for(let i=0;i<s.length;i++){x^=s.charCodeAt(i);x=Math.imul(x,16777619)>>>0}return x.toString(16).padStart(8,"0")};
+// 書き出し: アプリのデータ5項目だけを取り出す。編集パスコードなどは保存データの別の場所にあり、ここには含まれない
+function bkMake(D,now){const data=JSON.parse(JSON.stringify({itin:D.itin,book:D.book,bud:D.bud,exp:D.exp||[],pay:D.pay||[]}));return{app:BK_APP,format:BK_FMT,exportedAt:now,check:bkHash(JSON.stringify(data)),data}}
+// 検証: 正しければ {ok:true,data,meta}(項目を絞り込んだ安全なコピー)、不正なら {ok:false,err}
+function bkValidate(text,c){const E=m=>({ok:false,err:m}),S=v=>typeof v=="string",O=v=>v===undefined||S(v),N=(v,a)=>Number.isInteger(v)&&v>=a&&v<=1e9,R=v=>!!v&&typeof v=="object"&&!Array.isArray(v),DT=v=>S(v)&&/^\d{4}-\d{2}-\d{2}$/.test(v),TS=v=>v===undefined||(Number.isFinite(v)&&v>=0),T=v=>S(v)?v:"";
+if(!S(text)||!text.trim())return E("ファイルが空です。");
+if(text.length>3e6)return E("ファイルが大きすぎます(上限 約3MB)。");
+let o;try{o=JSON.parse(text)}catch(e){return E("JSONとして読み取れません。バックアップファイルではない可能性があります。")}
+if(!R(o)||o.app!==BK_APP)return E("このアプリのバックアップファイルではありません。");
+if(o.format!==BK_FMT)return E(typeof o.format=="number"&&o.format>BK_FMT?"新しい形式のバックアップです。アプリを更新してから読み込んでください。":"対応していない形式のファイルです。");
+const d=o.data;if(!R(d))return E("データ部分がありません。");
+if(o.check!==bkHash(JSON.stringify(d)))return E("ファイルが壊れているか、内容が書き換えられています。");
+for(const[k,n]of[["itin","旅程"],["book","予約"]])if(!Array.isArray(d[k]))return E("必要なデータ「"+n+"」がそろっていません。");
+for(const[k,n]of[["exp","支出"],["pay","精算"]])if(d[k]!==undefined&&!Array.isArray(d[k]))return E("「"+n+"」のデータが不正です。");
+const bud=d.bud===undefined||d.bud===null?"":d.bud;if(bud!==""&&!N(bud,0))return E("予算の値が不正です。");
+const pid=c.pids,rows=(L,n,f)=>{if(L.length>5000)return[n+"のデータが多すぎます。"];const seen=new Set(),out=[];for(let i=0;i<L.length;i++){const x=L[i],w=n+" "+(i+1)+"件目:";if(!R(x))return[w+"形式が不正です。"];if(!S(x.id)||!x.id||x.id.length>100)return[w+"IDが不正です。"];if(seen.has(x.id))return[w+"IDが重複しています。"];seen.add(x.id);const r=f(x);if(typeof r=="string")return[w+r];out.push(r)}return[null,out]};
+const a=rows(d.itin,"旅程",x=>!(S(x.d)&&c.days.includes(x.d))?"日付が不正です。":!["c","p","t"].includes(x.st)?"状態が不正です。":!["tm","te","ti","pl","tr","ad","map","bk","note"].every(k=>O(x[k]))?"文字列でない項目があります。":{id:x.id,d:x.d,tm:T(x.tm),te:T(x.te),ti:T(x.ti),pl:T(x.pl),tr:T(x.tr),ad:T(x.ad),map:T(x.map),bk:T(x.bk),st:x.st,note:T(x.note)});
+if(a[0])return E(a[0]);
+const b=rows(d.book,"予約",x=>!c.kinds.includes(x.kind)?"種類が不正です。":!S(x.name)?"名称が不正です。":!["date","t1","t2","people","status","no","url","note"].every(k=>O(x[k]))?"文字列でない項目があります。":!(x.amount===""||x.amount===undefined||N(x.amount,0))?"参考額が不正です。":{id:x.id,kind:x.kind,name:x.name,date:T(x.date),t1:T(x.t1),t2:T(x.t2),people:T(x.people),amount:x.amount===undefined?"":x.amount,status:T(x.status),no:T(x.no),url:T(x.url),note:T(x.note)});
+if(b[0])return E(b[0]);
+const e=rows(d.exp||[],"支出",x=>!DT(x.d)?"日付が不正です。":!N(x.amt,1)?"金額が不正です。":!pid.includes(x.pa)?"支払った人が不正です。":!(Array.isArray(x.sp)&&x.sp.length&&x.sp.every(i=>pid.includes(i)))?"割り勘の対象が不正です。":!(O(x.ti)&&O(x.cat)&&TS(x.at)&&TS(x.ut))?"項目の形式が不正です。":{id:x.id,d:x.d,ti:T(x.ti),amt:x.amt,cat:T(x.cat)||"その他",pa:x.pa,sp:[...new Set(x.sp)],at:x.at||0,ut:x.ut||x.at||0});
+if(e[0])return E(e[0]);
+const p=rows(d.pay||[],"精算",x=>!(pid.includes(x.f)&&pid.includes(x.t))||x.f==x.t?"払う人・受け取る人が不正です。":!N(x.amt,1)?"金額が不正です。":!DT(x.d)?"日付が不正です。":!TS(x.at)?"項目の形式が不正です。":{id:x.id,f:x.f,t:x.t,amt:x.amt,d:x.d,at:x.at||0});
+if(p[0])return E(p[0]);
+return{ok:true,data:{itin:a[1],book:b[1],bud,exp:e[1],pay:p[1]},meta:{exportedAt:S(o.exportedAt)?o.exportedAt:""}}}
+</script>
+<script id="bgl">
+// ===== 予算・割り勘ロジック(画面に依存しない部品。将来のクラウド化でもそのまま移せる) =====
+// 金額はすべて円の整数。支出={id,d:日付,ti:内容,amt,cat,pa:立替した人,sp:割り勘対象[],at:作成,ut:更新} / 精算={id,f:払う人,t:受け取る人,amt,d,at}
+const P=[{id:"m",n:"まさみ"},{id:"k",n:"まさき"},{id:"h",n:"はやと"}];
+// 1件を対象者で割る。端数は1円ずつ配り、合計が必ず元の金額に一致する(配る相手は支出IDで分散)
+function shares(e){const s=e.sp.filter(x=>P.some(p=>p.id==x)),n=s.length,o={};if(!n)return o;const b=Math.floor(e.amt/n),r=e.amt-b*n,k=[...String(e.id)].reduce((a,c)=>a+c.charCodeAt(0),0)%n;s.forEach((x,i)=>o[x]=b+((i+k)%n<r?1:0));return o}
+// 集計: 合計・立替額・負担額・立替回数・差額(立替−負担。記録済みの精算を反映。プラス=受け取る側)
+function calc(D){const t={total:0,paid:{},share:{},cnt:{},net:{},bal:{}};P.forEach(p=>t.paid[p.id]=t.share[p.id]=t.cnt[p.id]=0);
+D.exp.forEach(e=>{t.total+=e.amt;if(e.pa in t.paid){t.paid[e.pa]+=e.amt;t.cnt[e.pa]++}const s=shares(e);for(const k in s)t.share[k]+=s[k]});
+P.forEach(p=>t.bal[p.id]=t.net[p.id]=t.paid[p.id]-t.share[p.id]);
+(D.pay||[]).forEach(y=>{if(y.f in t.net&&y.t in t.net){t.net[y.f]+=y.amt;t.net[y.t]-=y.amt}});return t}
+// 精算方法: 払う人→受け取る人の最少回数の送金リスト
+function plan(net){const c=[],d=[],T=[];for(const k in net){if(net[k]>0)c.push([k,net[k]]);else if(net[k]<0)d.push([k,-net[k]])}
+c.sort((a,b)=>b[1]-a[1]);d.sort((a,b)=>b[1]-a[1]);
+while(c.length&&d.length){const m=Math.min(c[0][1],d[0][1]);T.push({f:d[0][0],t:c[0][0],amt:m});c[0][1]-=m;d[0][1]-=m;if(!c[0][1])c.shift();if(!d[0][1])d.shift()}return T}
+const sumBy=(L,f)=>{const o={};L.forEach(e=>{const k=f(e);o[k]=(o[k]||0)+e.amt});return o};
+</script>
+<script>
+(()=>{
+const DAYS=["2026-12-30","2026-12-31","2027-01-01","2027-01-02"],DN=["12/30(水)","12/31(木)","1/1(金)","1/2(土)"],TR={"":"","新幹線":"🚄","車":"🚗","電車":"🚃","バス":"🚌","徒歩":"🚶","フェリー":"⛴️","その他":"➡️"},KI={"交通":"🚄","宿泊":"🏨","施設":"🎟️","その他":"📌"},SN={c:"確定",p:"検討中",t:"未定"};
+const uid=()=>"x"+Date.now().toString(36)+Math.random().toString(36).slice(2,5),h=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),yen=n=>"¥"+Number(n).toLocaleString("ja-JP"),tt=m=>{const t=$("#tt");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",3500)};
+const I=(id,d,tm,te,ti,pl,tr,bk)=>({id,d,tm,te,ti,pl,tr,ad:"",map:"",bk,st:"c",note:""}),K="JR CLEMENT INN KOCHI";
+const DEF=()=>({itin:[I("i1",DAYS[0],"07:12","10:25","東京駅 → 岡山駅(のぞみ9号・普通車)","東京駅 → 岡山駅","新幹線","b1"),I("i2",DAYS[0],"15:00","",K+" チェックイン",K,"","b3"),I("i3",DAYS[1],"11:00","",K+" チェックアウト",K,"","b3"),I("i4",DAYS[1],"16:00","","三Sen チェックイン","三Sen","","b4"),I("i5",DAYS[3],"10:00","","三Sen チェックアウト","三Sen","","b4"),I("i6",DAYS[3],"18:20","21:33","岡山駅 → 東京駅(のぞみ50号)","岡山駅 → 東京駅","新幹線","b2")],
+book:[{id:"b1",kind:"交通",name:"往路新幹線 のぞみ9号(普通車)",date:DAYS[0],t1:"07:12",t2:"10:25",people:"",amount:35940,status:"",no:"",url:"",note:"東京駅07:12発 → 岡山駅10:25着。金額は予約全体の金額。人数・支払者は未確認。"},{id:"b2",kind:"交通",name:"復路新幹線 のぞみ50号",date:DAYS[3],t1:"18:20",t2:"21:33",people:"",amount:35940,status:"",no:"",url:"",note:"岡山駅18:20発 → 東京駅21:33着。金額は予約全体の金額。人数・支払者は未確認。"},{id:"b3",kind:"宿泊",name:K,date:DAYS[0],t1:"15:00",t2:"11:00",people:"",amount:"",status:"",no:"",url:"",note:"12/30 15:00チェックイン → 12/31 11:00チェックアウト"},{id:"b4",kind:"宿泊",name:"三Sen",date:DAYS[1],t1:"16:00",t2:"10:00",people:"",amount:"",status:"",no:"",url:"",note:"12/31 16:00チェックイン → 1/2 10:00チェックアウト"}]});
+let D;try{D=JSON.parse(localStorage.getItem("hyt2")||"null")}catch(e){}D=D||DEF();D.exp=D.exp||[];D.pay=D.pay||[];if(D.bud==null)D.bud="";
+const sv=()=>{try{localStorage.setItem("hyt2",JSON.stringify(D))}catch(e){tt("保存に失敗しました。ブラウザの設定を確認してください。")}};
+let ED=false,day=0,only=false,open=new Set();document.querySelector("main").id="v-home";
+const eb=()=>`<button class="btn g" data-a="ed">${ED?"✏️ 編集中(終了)":"🔒 編集(まさみ)"}</button>`,ok=u=>/^https?:\/\//.test(u);
+const lnk=(u,t)=>ok(u)?`<a href="${h(u)}" target="_blank" rel="noopener">${t} ↗</a>`:"";
+function rI(){const L=D.itin.filter(x=>x.d==DAYS[day]&&(!only||x.st=="c"));
+$("#v-itin").innerHTML=`<div class="bar sign"><h1>旅程</h1>${eb()}</div><div class="tabs">${DAYS.map((d,i)=>`<button class="btn g ${i==day?"on":""}" data-day="${i}">${DN[i]}</button>`).join("")}</div><label><input type="checkbox" id="only" ${only?"checked":""}> 確定のみ表示</label>`+
+(L.map(x=>{const b=D.book.find(z=>z.id==x.bk),o=open.has(x.id);return `<div class="ic ${x.st}"><div data-a="tg" data-id="${x.id}" style="cursor:pointer"><span class="tm">${h(x.tm||"時刻未入力")}${x.te?"〜"+h(x.te):""}</span><span class="bg b${x.st}">${SN[x.st]}</span><br><b>${TR[x.tr]||""} ${h(x.ti)}</b></div>${o?`<div class="dt">📍場所:${h(x.pl||"未入力")}<br>🚆移動手段:${h(x.tr||"未入力")}<br>住所:${h(x.ad||"未入力")} ${lnk(x.map,"地図")}<br>メモ:${h(x.note||"なし")}${b?`<br><button class="btn g" data-a="gob" data-id="${b.id}">🎫 予約を見る</button>`:""}</div>`:""}${ED?`<div class="row"><button class="btn g" data-a="ei" data-id="${x.id}">編集</button><button class="btn g" data-a="di" data-id="${x.id}">削除</button><button class="btn g" data-a="up" data-id="${x.id}">↑</button><button class="btn g" data-a="dn" data-id="${x.id}">↓</button></div>`:""}</div>`}).join("")||`<p class="mut">この日の予定はまだありません。</p>`)+(ED?`<button class="btn" data-a="ai">＋ 予定を追加</button>`:"")+`<p class="warn">実線=確定 / 黄色の点線=検討中 / 点=未定。入力されていない項目は「未入力」と表示します。</p>`;$("#only").onchange=e=>{only=e.target.checked;rI()}}
+function rB(){$("#v-book").innerHTML=`<div class="bar sign"><h1>予約</h1>${eb()}</div>`+Object.keys(KI).map(k=>{const L=D.book.filter(x=>x.kind==k);return L.length?`<h3>${KI[k]} ${k}</h3>`+L.map(x=>`<div class="ic" id="bk-${x.id}"><b>${h(x.name)}</b><span class="bg ${x.status=="予約済"?"bc":"bt"}">${h(x.status||"状況未入力")}</span><br>利用日:${h(x.date||"未入力")}<br>${x.kind=="宿泊"?`IN ${h(x.t1||"未入力")} / OUT ${h(x.t2||"未入力")}`:`時間:${h(x.t1||"未入力")}${x.t2?"〜"+h(x.t2):""}`}<br>人数:${h(x.people||"未入力")}<br>参考額:${x.amount===""?"未入力":yen(x.amount)} <small class="mut">(予算には自動計上されません)</small><br>予約番号:${x.no?`<span>••••••</span> <button class="btn g" data-a="rev" data-id="${x.id}">表示</button>`:"未入力"}${ok(x.url)?`<br>${lnk(x.url,"予約確認ページ")}`:""}${x.note?`<br><span class="mut">${h(x.note)}</span>`:""}${ED?`<div class="row"><button class="btn g" data-a="eb" data-id="${x.id}">編集</button><button class="btn g" data-a="db" data-id="${x.id}">削除</button></div>`:""}</div>`).join(""):""}).join("")+(ED?`<button class="btn" data-a="ab">＋ 予約を追加</button>`:"")+`<p class="warn">予約金額は参考額です。実際の支出は、STEP 3 の支出記録で別に管理します。</p>`}
+const ra=()=>{rI();rB();rX()};
+let bt="sum";
+const BT=[["sum","📊概要"],["list","🧾支出"],["agg","📈集計"],["set","🤝精算"],["bk","💾バックアップ"]],CAT={"食費":"🍽️","ガソリン・高速":"⛽","交通":"🚄","宿泊":"🏨","観光・施設":"🎟️","お土産":"🛍️","その他":"📌"},MD=["🥇","🥈","🥉"];
+const pn=i=>P.find(p=>p.id==i)?.n||"?",md=s=>{const[,m,x]=String(s).split("-");return+m+"/"+ +x},td=()=>{const x=new Date(),z=n=>String(n).padStart(2,"0");return x.getFullYear()+"-"+z(x.getMonth()+1)+"-"+z(x.getDate())};
+const kv=(a,b,c="")=>`<div class="kv"><span>${a}</span><b class="${c}">${b}</b></div>`;
+const rank=(t,o,f)=>`<div class="ic"><b>${t}</b>${P.map(p=>[p.n,o[p.id]]).sort((a,b)=>b[1]-a[1]).map((x,i)=>kv(MD[i]+" "+x[0],f(x[1]))).join("")}</div>`;
+const WD="日月火水木金土",dl=s=>{const x=new Date(s+"T00:00:00");return isNaN(x)?s:md(s)+"("+WD[x.getDay()]+")"},sg=n=>n>0?"+"+yen(n):n<0?"−"+yen(-n):"±¥0",cls=n=>n>0?"pos":n<0?"neg":"",sum=L=>L.reduce((a,e)=>a+e.amt,0);
+let cf="";
+function rX(){const C=calc(D),bud=D.bud,rest=bud===""?null:bud-C.total,pc=bud>0?Math.round(C.total/bud*100):null,lv=rest==null?"":rest<0?"over":pc>=80?"warn":"",E=[...D.exp].sort((a,b)=>b.d.localeCompare(a.d)||b.at-a.at);let s="";
+if(bt=="sum"){const w=Math.min(100,pc||0);s=`<div class="hero ${lv}"><div class="kv"><span>残り予算</span><span>消化率 <b>${pc==null?"–":pc+"%"}</b></span></div><div class="big">${rest==null?"予算未設定":rest<0?"−"+yen(-rest)+" 超過!":yen(rest)}</div><div class="meter"><i style="width:${w}%"></i><em style="left:${w}%">🚗</em></div><div class="kv"><small>支出 ${yen(C.total)}</small><small>予算 ${bud===""?"未設定":yen(bud)}</small></div>${lv=="warn"?`<p class="neg">⚠️ 予算の80%を超えました</p>`:""}${ED?`<div class="row"><button class="btn g" data-a="sb">予算を設定・変更</button></div>`:""}</div>${bkNudge()}<div class="g3">${P.map(p=>`<div class="ic mini"><b>${p.n}</b><small>立替</small>${yen(C.paid[p.id])}<small>負担</small>${yen(C.share[p.id])}<small>過不足</small><b class="${cls(C.bal[p.id])}">${sg(C.bal[p.id])}</b></div>`).join("")}</div>`+rank("💸 立替額ランキング",C.paid,yen)+rank("🧮 負担額ランキング",C.share,yen)+rank("🧾 立替回数",C.cnt,n=>n+"回")}
+else if(bt=="list"){const cs=Object.keys(CAT).filter(k=>D.exp.some(e=>e.cat==k));if(cf&&!cs.includes(cf))cf="";const F=cf?E.filter(e=>e.cat==cf):E,G={};F.forEach(e=>(G[e.d]=G[e.d]||[]).push(e));
+s=(ED?"":`<p class="mut">追加・編集は右上の「🔒 編集」からパスコードを入力してください。</p>`)+(cs.length>1?`<div class="tabs"><button class="btn g ${cf?"":"on"}" data-cf="">全て</button>${cs.map(k=>`<button class="btn g ${k==cf?"on":""}" data-cf="${h(k)}">${CAT[k]} ${h(k)}</button>`).join("")}</div>`:"")+(F.length?`<p class="mut">${F.length}件 ・ 合計 ${yen(sum(F))}</p>`:"")+(Object.keys(G).sort().reverse().map(d=>`<h3 class="dh"><span>${dl(d)}</span><span>${yen(sum(G[d]))}</span></h3>`+G[d].map(e=>{const sh=shares(e),k=Object.keys(sh),v=Object.values(sh);return `<div class="ic"><div class="kv"><b>${CAT[e.cat]||"📌"} ${h(e.ti||e.cat)}</b><b>${yen(e.amt)}</b></div><small class="mut">立替:${pn(e.pa)} ・ 対象:${k.length==P.length?"3人":k.map(pn).join("・")} ・ ${v.every(x=>x==v[0])?(k.length>1?"1人 "+yen(v[0]):"全額"):"端数あり "+k.map(i=>pn(i)+" "+yen(sh[i])).join(" ")}</small>${ED?`<div class="row"><button class="btn g" data-a="ex" data-id="${e.id}">編集</button><button class="btn g" data-a="dx" data-id="${e.id}">削除</button></div>`:""}</div>`}).join("")).join("")||`<p class="mut">支出はまだありません。${ED?"右下の＋で追加できます。":""}</p>`)}
+else if(bt=="agg"){const bar=(o,nm,so,pct)=>Object.entries(o).sort(so).map(([k,v])=>kv(nm(k),yen(v)+(pct?` <small>${Math.round(v/C.total*100)}%</small>`:""))+`<div class="cb" style="width:${Math.round(v/Math.max(1,...Object.values(o))*100)}%"></div>`).join("")||`<p class="mut">データがありません。</p>`;
+s=`<div class="ic"><b>費目別</b>${bar(sumBy(D.exp,e=>e.cat),k=>(CAT[k]||"📌")+" "+h(k),(a,b)=>b[1]-a[1],1)}</div><div class="ic"><b>日別</b>${bar(sumBy(D.exp,e=>e.d),dl,(a,b)=>a[0].localeCompare(b[0]))}</div>`}
+else if(bt=="bk")s=rBk();else{const T=plan(C.net),fin=D.exp.length&&!T.length,tot=o=>P.reduce((a,p)=>a+o[p.id],0);
+s=`<div class="ic"><b>📋 3人の収支表</b><table class="tb"><tr><th></th><th>支払った額</th><th>負担すべき額</th><th>過不足</th></tr>${P.map(p=>`<tr><td><b>${p.n}</b></td><td>${yen(C.paid[p.id])}</td><td>${yen(C.share[p.id])}</td><td class="${cls(C.bal[p.id])}"><b>${sg(C.bal[p.id])}</b></td></tr>`).join("")}<tr><td>合計</td><td>${yen(tot(C.paid))}</td><td>${yen(tot(C.share))}</td><td>${sg(tot(C.bal))}</td></tr></table><p class="mut" style="margin:6px 0 0;font-size:12px">過不足:+は受け取る側、−は支払う側。${tot(C.paid)==C.total&&tot(C.share)==C.total?`<br>✅ 検算OK:支払合計 = 負担合計 = 支出合計(${yen(C.total)})`:"<br>⚠️ 合計が一致しません"}</p></div>`+(fin?`<div class="ic">🎉 すべて精算済みです!</div>`:T.length?`<h3>精算の方法${D.pay.length?"(精算済みを反映)":""}</h3>`+T.map(x=>`<div class="ic"><div class="kv"><b>${pn(x.f)} → ${pn(x.t)}</b><b>${yen(x.amt)}</b></div>${ED?`<div class="row"><button class="btn g" data-a="sp" data-f="${x.f}" data-t="${x.t}" data-m="${x.amt}">✅ 精算済みにする</button></div>`:""}</div>`).join(""):`<p class="mut">支出を追加すると精算額が計算されます。</p>`)+(D.pay.length?`<h3>精算済みの記録</h3>`+D.pay.map(y=>`<div class="ic"><div class="kv"><span>${md(y.d)} ${pn(y.f)} → ${pn(y.t)}</span><b>${yen(y.amt)}</b></div>${ED?`<div class="row"><button class="btn g" data-a="dp" data-id="${y.id}">取消</button></div>`:""}</div>`).join(""):"")+`<p class="warn">端数のルール:1件ごとに対象人数で割り、余った1円単位の端数は、支出ごとに配る相手を変えて1円ずつ割り振ります。合計は必ず元の金額と一致します。</p>`}
+$("#v-bud").innerHTML=`<div class="bar sign"><h1>予算</h1>${eb()}</div><div class="tabs">${BT.map(([k,l])=>`<button class="btn g ${k==bt?"on":""}" data-bt="${k}">${l}</button>`).join("")}</div>`+s+(ED&&bt!="bk"?`<button class="btn fab" data-a="ax" aria-label="支出を追加">＋</button>`:"")}
+async function setBud(){const v=await dlg(`<h3>旅行全体の予算(円)</h3><input id="bi" type="number" min="0" step="1" inputmode="numeric" value="${h(D.bud)}"><div class="row"><button class="btn">保存</button><button type="button" class="btn g" id="bx">キャンセル</button></div>`,(f,done)=>{f.onsubmit=e=>{e.preventDefault();done($("#bi").value)};$("#bx").onclick=()=>done(null)});if(v==null)return;D.bud=v===""?"":Math.max(0,Math.round(+v));sv();rX();tt("✅ 予算を保存しました")}
+async function editX(id){const o=id?D.exp.find(x=>x.id==id):{id:uid(),d:DAYS.includes(td())?td():DAYS[0],ti:"",amt:"",cat:"食費",pa:"m",sp:P.map(p=>p.id)};if(!o)return;
+const chip=(ty,n,v,on,x)=>`<label class="chip"><input type="${ty}" name="${n}" value="${h(v)}"${on?" checked":""}><span>${x}</span></label>`;
+const r=await dlg(`<h3>${id?"支出を編集":"支出を追加"}</h3><label>金額(円)<input id="xa" name="amt" type="number" min="1" step="1" inputmode="numeric" pattern="[0-9]*" value="${h(o.amt)}" placeholder="例:3500"></label><div class="lb">費目</div><div class="chips">${Object.keys(CAT).map(k=>chip("radio","cat",k,k==o.cat,CAT[k]+" "+h(k))).join("")}</div><label>内容(未入力なら費目名)<input name="ti" value="${h(o.ti)}" placeholder="例:高速代・うどん"></label><div class="lb">支払った人</div><div class="chips">${P.map(p=>chip("radio","pa",p.id,p.id==o.pa,p.n)).join("")}</div><div class="lb">割り勘の対象</div><div class="chips">${P.map(p=>chip("checkbox","sp",p.id,o.sp.includes(p.id),p.n)).join("")}</div><p class="pv" id="pv"></p><label>支出日<input name="d" type="date" value="${h(o.d)}"></label><p class="neg" id="er"></p><div class="row"><button class="btn">保存</button><button type="button" class="btn g" id="xx">キャンセル</button></div>`,(f,done)=>{
+const pv=()=>{if(!$("#pv"))return;const g=new FormData(f),a=Math.round(+g.get("amt")),sp=g.getAll("sp");$("#pv").textContent=a>0&&sp.length?(v=>v.every(x=>x==v[0])?"1人あたり "+yen(v[0]):"1人あたり "+yen(Math.floor(a/sp.length))+"(端数"+a%sp.length+"円は1円ずつ配分)")(Object.values(shares({id:o.id,amt:a,sp}))):""};f.oninput=f.onchange=pv;pv();
+f.onsubmit=e=>{e.preventDefault();const g=new FormData(f),amt=Math.round(+g.get("amt")),sp=g.getAll("sp"),er=m=>$("#er").textContent=m;if(!g.get("d"))return er("日付を入力してください。");if(!(amt>0))return er("金額は1円以上の数字で入力してください。");if(!sp.length)return er("割り勘の対象を1人以上選んでください。");done({...o,d:g.get("d"),ti:g.get("ti").trim(),amt,cat:g.get("cat")||"その他",pa:g.get("pa")||"m",sp})};$("#xx").onclick=()=>done(null)});
+if(!r)return;r.ut=Date.now();if(id)D.exp[D.exp.findIndex(x=>x.id==id)]=r;else D.exp.push({...r,at:r.ut});sv();rX();tt("✅ 支出を"+(id?"更新":"追加")+"しました("+yen(r.amt)+")")}
+async function delX(id){const x=D.exp.find(z=>z.id==id);if(!x)return;if(await yes("「"+(x.ti||x.cat)+"」"+yen(x.amt)+" を削除しますか?元に戻せません。")){D.exp=D.exp.filter(z=>z.id!=id);sv();rX();tt("🗑️ 削除しました")}}
+// ===== バックアップ =====
+const LK="hyt2",PK="hyt2_prev",TK="hyt_bk",lsg=k=>{try{return localStorage.getItem(k)}catch(e){return null}},lss=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+let bm=null,bkText="";
+const z2=n=>String(n).padStart(2,"0"),dtf=s=>{const x=new Date(s);return isNaN(x)?"":(x.getMonth()+1)+"/"+x.getDate()+" "+z2(x.getHours())+":"+z2(x.getMinutes())};
+const bkCount=D=>({itin:D.itin.length,book:D.book.length,exp:(D.exp||[]).length,pay:(D.pay||[]).length}),bu=v=>v===""||v==null?"未設定":yen(v),BKC=()=>({days:DAYS,kinds:Object.keys(KI),pids:P.map(p=>p.id)});
+const bkNudge=()=>lsg(TK)?"":`<div class="ic" data-bt="bk" style="cursor:pointer">💾 まだバックアップがありません。タップして保存 ›</div>`;
+function bmsg(ok,t){bm={ok,t};rX();scrollTo(0,0);tt((ok===true?"":"⚠️ ")+t.slice(0,36))}
+function rBk(){const n=bkCount(D),no=D.book.filter(b=>b.no).length,last=lsg(TK);
+return (bm?`<div class="msg ${bm.ok===true?"ok":bm.ok==="info"?"info":"ng"}" role="status">${h(bm.t)}</div>`:"")+
+`<div class="ic bk"><h3>📤 書き出し<small>バックアップを作る</small></h3><p>いまの端末のデータをJSONファイルにして保存します。データは変更されません。</p><p class="mut">含まれるもの:旅程 ${n.itin}件 / 予約 ${n.book}件 / 予算 ${bu(D.bud)} / 支出 ${n.exp}件 / 精算 ${n.pay}件</p><p class="mut">含まれないもの:編集パスコード、ゲームの進行状況</p>${no?`<p class="neg">⚠️ 予約番号が入力された予約が${no}件あります。ファイルには予約番号も含まれるので、保管・共有に注意してください。</p>`:""}<button class="btn" data-a="bke">📤 バックアップを書き出す</button><p class="mut">前回の書き出し:${last?dtf(last):"まだありません"}</p></div>`+
+(bkText?`<div class="ic bk"><b>手動で保存する</b><p>ファイル保存が使えなかったため、内容を表示しています。全体をコピーして、メモアプリなどに貼り付けて保存してください。</p><textarea id="bkt" readonly rows="6">${h(bkText)}</textarea><button class="btn" data-a="bkc">📋 全体をコピー</button></div>`:"")+
+`<div class="ic bk2"><h3>📥 読み込み<small>バックアップから復元する</small></h3><p class="neg">復元すると、いまの旅程・予約・予算・支出・精算は、すべてバックアップの内容に置き換わります。</p>${ED?`<label class="btn g fl">📂 ファイルを選んで復元<input id="bkf" type="file" accept=".json,application/json"></label><button class="btn g" data-a="bkp">📋 貼り付けて復元</button>${lsg(PK)?`<button class="btn g" data-a="bku">↩️ 復元前の状態に戻す</button>`:""}`:`<p class="mut">復元には、右上の「🔒 編集」からパスコードの入力が必要です。</p>`}</div>`}
+async function bkExport(){const txt=JSON.stringify(bkMake(D,new Date().toISOString()),null,1),x=new Date(),fn="hayashi-shikoku-backup-"+x.getFullYear()+z2(x.getMonth()+1)+z2(x.getDate())+"-"+z2(x.getHours())+z2(x.getMinutes())+".json";let dl=null;
+try{dl=typeof window!="undefined"&&window.claude?await window.claude.use("downloads"):null}catch(e){}
+if(dl){try{await dl.save({filename:fn,data:txt});lss(TK,new Date().toISOString());bkText="";return bmsg(true,"✅ バックアップを書き出しました。("+fn+")")}catch(e){if(e&&e.code=="declined")return bmsg(false,"保存がキャンセルされました。バックアップは作成されていません。")}}
+bkText=txt;bmsg("info","この端末ではファイル保存が使えませんでした。下のテキストをコピーして保存してください。")}
+async function bkCopy(){let ok=false;try{await navigator.clipboard.writeText(bkText);ok=true}catch(e){try{const a=$("#bkt");a.select();a.setSelectionRange(0,1e9);ok=document.execCommand("copy")}catch(_){}}
+if(ok){lss(TK,new Date().toISOString());bmsg(true,"✅ コピーしました。メモアプリなどに貼り付けて保存してください。")}else bmsg(false,"コピーできませんでした。テキストを長押しして、全選択→コピーしてください。")}
+// 安全な置き換え: 先に直前の状態を退避し、書き込み後に読み戻して確認。失敗したら元に戻し、画面のデータも変えない
+function bkApply(nd){const old=lsg(LK),next=JSON.stringify(nd);
+try{if(old!=null)localStorage.setItem(PK,old);localStorage.setItem(LK,next);if(localStorage.getItem(LK)!==next)throw 0}
+catch(e){try{old==null?localStorage.removeItem(LK):localStorage.setItem(LK,old)}catch(_){}return false}
+D=nd;day=0;open.clear();cf="";bkText="";ra();return true}
+async function bkRestore(text){const r=bkValidate(text,BKC());
+if(!r.ok)return bmsg(false,"復元できません。"+r.err+"(いまのデータは変更していません)");
+const c=bkCount(D),m=bkCount(r.data),row=(l,a,b)=>`<tr><td>${l}</td><td>${a}</td><td>${b}</td></tr>`;
+for(;;){const a=await dlg(`<h3>⚠️ この内容で復元しますか?</h3><p class="mut">バックアップの作成日時:${dtf(r.meta.exportedAt)||"不明"}</p><table class="tb"><tr><th></th><th>いまの端末</th><th>バックアップ</th></tr>${row("旅程",c.itin+"件",m.itin+"件")}${row("予約",c.book+"件",m.book+"件")}${row("予算",bu(D.bud),bu(r.data.bud))}${row("支出",c.exp+"件",m.exp+"件")}${row("精算",c.pay+"件",m.pay+"件")}</table><p class="neg"><b>いまのデータは、すべてバックアップの内容に置き換わります。</b></p><p>念のため、先に現在のデータを書き出しておくことをおすすめします。(復元後も「復元前の状態に戻す」が使えます)</p><button type="button" class="btn g" id="b1" style="width:100%">📤 現在のデータを先に書き出す</button><div class="row"><button type="button" class="btn" id="b2">置き換えて復元</button><button type="button" class="btn g" id="b3">やめる</button></div>`,(f,done)=>{f.onsubmit=e=>e.preventDefault();$("#b1").onclick=()=>done("exp");$("#b2").onclick=()=>done("go");$("#b3").onclick=()=>done(null)});
+if(a=="exp"){await bkExport();continue}
+if(a!="go")return tt("復元をやめました。いまのデータは変更していません。");break}
+if(!bkApply(r.data))return bmsg(false,"復元に失敗しました。いまのデータはそのまま残っています。");
+bmsg(true,"✅ 復元しました。旅程 "+m.itin+"件 / 予約 "+m.book+"件 / 支出 "+m.exp+"件 / 精算 "+m.pay+"件 / 予算 "+bu(r.data.bud)+"。各画面に反映されています。")}
+async function bkPaste(){const v=await dlg(`<h3>📋 貼り付けて復元</h3><p class="mut">書き出したバックアップの内容(JSON)を、すべて貼り付けてください。</p><textarea id="bkp" rows="8" style="font-size:13px" placeholder="{ ... }"></textarea><div class="row"><button class="btn">次へ</button><button type="button" class="btn g" id="bpx">キャンセル</button></div>`,(f,done)=>{f.onsubmit=e=>{e.preventDefault();done($("#bkp").value)};$("#bpx").onclick=()=>done(null)});if(v!=null)await bkRestore(v)}
+async function bkUndo(){let o;try{o=JSON.parse(lsg(PK))}catch(e){}
+if(!o||!Array.isArray(o.itin)||!Array.isArray(o.book))return bmsg(false,"戻せるデータがありません。");
+if(!await yes("復元する前の状態に戻しますか?いまのデータは置き換わります。","元に戻す"))return;
+o.exp=Array.isArray(o.exp)?o.exp:[];o.pay=Array.isArray(o.pay)?o.pay:[];if(o.bud==null)o.bud="";
+const k=bkApply(o);bmsg(k,k?"✅ 復元前の状態に戻しました。":"戻せませんでした。いまのデータはそのまま残っています。")}
+document.addEventListener("change",async e=>{const i=e.target;if(!i||i.id!="bkf")return;const f=i.files&&i.files[0];i.value="";if(!f)return;
+if(!ED)return bmsg(false,"復元には編集モードが必要です。");if(f.size>3e6)return bmsg(false,"復元できません。ファイルが大きすぎます。(いまのデータは変更していません)");
+let tx;try{tx=await f.text()}catch(_){return bmsg(false,"ファイルを読み込めませんでした。(いまのデータは変更していません)")}await bkRestore(tx)});
+function form(title,F,v,cb){$("#ff").innerHTML=`<h3>${title}</h3>`+F.map(([k,l,t,o])=>{const x=v[k]??"",op=o&&(typeof o=="function"?o():o).map(z=>Array.isArray(z)?z:[z,z]);return `<label>${l}`+(t=="s"?`<select name="${k}">${op.map(([a,b])=>`<option value="${h(a)}"${a==x?" selected":""}>${h(b)}</option>`).join("")}</select>`:t=="a"?`<textarea name="${k}" rows="3">${h(x)}</textarea>`:`<input name="${k}" type="${{d:"date",t:"time",n:"number",u:"url"}[t]||"text"}" ${t=="n"?'min="0" step="1" inputmode="numeric"':""} value="${h(x)}">`)+"</label>"}).join("")+`<div class="row"><button class="btn">保存</button><button type="button" class="btn g" id="fx">キャンセル</button></div>`;
+$("#fx").onclick=()=>$("#fd").close();$("#ff").onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),o={...v};F.forEach(([k,,t])=>{const a=f.get(k);o[k]=t=="n"?(a==""?"":Math.max(0,Math.round(+a))):a});if((o.url&&!ok(o.url))||(o.map&&!ok(o.map)))return tt("URLは http:// か https:// で始まる形式で入力してください。");$("#fd").close();cb(o)};$("#fd").showModal()}
+const FI=[["d","日付","s",DAYS],["tm","開始時刻(未入力可)","t"],["te","終了時刻(未入力可)","t"],["ti","予定の内容","x"],["pl","場所","x"],["tr","移動手段","s",Object.keys(TR)],["ad","住所","x"],["map","地図URL","u"],["bk","関連する予約","s",()=>[["","なし"],...D.book.map(b=>[b.id,b.name])]],["st","状態","s",[["c","確定"],["p","検討中"],["t","未定"]]],["note","メモ","a"]],
+FB=[["kind","種類","s",Object.keys(KI)],["name","予約対象・名称","x"],["date","利用日","d"],["t1","開始/チェックイン","t"],["t2","終了/チェックアウト","t"],["people","人数(未確認なら空欄)","x"],["amount","参考額(円・未確認なら空欄)","n"],["status","予約状況","s",[["","未入力"],"予約済","未予約","取消"]],["no","予約番号(機密:クラウド化までは入力しない)","x"],["url","予約確認URL","u"],["note","備考","a"]];
+const dlg=(html,wire)=>new Promise(r=>{const f=$("#ff"),d=$("#fd");f.oninput=f.onchange=f.onsubmit=null;f.innerHTML=html;let v=null;wire(f,x=>{v=x;d.close()});d.onclose=()=>{d.onclose=null;r(v)};d.showModal()});
+const ask=m=>dlg(`<h3>${h(m).replace(/\n/g,"<br>")}</h3><input type="password" id="pi" autocomplete="off"><div class="row"><button class="btn">OK</button><button type="button" class="btn g" id="px">キャンセル</button></div>`,(f,done)=>{f.onsubmit=e=>{e.preventDefault();done($("#pi").value)};$("#px").onclick=()=>done(null)});
+const yes=(m,l="削除する")=>dlg(`<h3>${h(m)}</h3><div class="row"><button type="button" class="btn" id="yy">${h(l)}</button><button type="button" class="btn g" id="nn">やめる</button></div>`,(f,done)=>{f.onsubmit=e=>e.preventDefault();$("#yy").onclick=()=>done(true);$("#nn").onclick=()=>done(false)}).then(Boolean);
+async function sha(t){return[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode("hyt"+t)))].map(x=>x.toString(16).padStart(2,"0")).join("")}
+async function unlock(){const k=localStorage.getItem("hyt_pw");if(!k){const p=await ask("まさみ用の編集パスコードを新しく設定(4文字以上)。\n※この端末内だけの簡易保護です。本当の権限管理はSTEP 4で実装します。");if(!p||p.length<4)return;localStorage.setItem("hyt_pw",await sha(p))}else{const p=await ask("編集パスコード");if(!p||await sha(p)!=k)return tt("パスコードが違います")}ED=true;ra()}
+function go(v){for(const m of["home","itin","book","bud"])document.getElementById("v-"+m).hidden=m!=v;document.querySelectorAll("#bn button").forEach(b=>b.classList.toggle("on",b.dataset.v==v));scrollTo(0,0)}
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-a],[data-day],[data-v],[data-bt],[data-cf]");if(!b)return;const d=b.dataset;if(d.v)return go(d.v);if(d.bt){bt=d.bt;return rX()}if(d.cf!=null){cf=d.cf;return rX()}if(d.day!=null){day=+d.day;return rI()}const a=d.a,id=d.id;
+if(a=="ed")return ED?(ED=false,ra()):unlock();if(a=="tg"){open.has(id)?open.delete(id):open.add(id);return rI()}
+if(a=="rev"){const s=b.previousElementSibling;s.textContent=D.book.find(x=>x.id==id).no;return b.remove()}
+if(a=="gob"){go("book");return setTimeout(()=>document.getElementById("bk-"+id)?.scrollIntoView({behavior:"smooth"}),60)}
+if(a=="bke")return bkExport();if(a=="bkc")return bkCopy();
+if(!ED)return;const A=D.itin,B=D.book;
+if(a=="ai")form("予定を追加",FI,{d:DAYS[day],tr:"",bk:"",st:"p"},o=>{A.push({...o,id:uid()});sv();ra()});
+else if(a=="ei")form("予定を編集",FI,A.find(x=>x.id==id),o=>{A[A.findIndex(x=>x.id==id)]=o;sv();ra()});
+else if(a=="di"){if(await yes("この予定を削除しますか?")){D.itin=A.filter(x=>x.id!=id);sv();ra()}}
+else if(a=="up"||a=="dn"){const i=A.findIndex(x=>x.id==id),s=a=="up"?-1:1;let j=i+s;while(A[j]&&A[j].d!=A[i].d)j+=s;if(A[j]){[A[i],A[j]]=[A[j],A[i]];sv();rI()}}
+else if(a=="ab")form("予約を追加",FB,{kind:"交通",status:""},o=>{B.push({...o,id:uid()});sv();ra()});
+else if(a=="eb")form("予約を編集",FB,B.find(x=>x.id==id),o=>{B[B.findIndex(x=>x.id==id)]=o;sv();ra()});
+else if(a=="db"){if(await yes("この予約を削除しますか?(関連する旅程の紐付けも外れます)")){D.book=B.filter(x=>x.id!=id);A.forEach(x=>{if(x.bk==id)x.bk=""});sv();ra()}}
+else if(a=="sb")await setBud();else if(a=="ax")await editX();else if(a=="ex")await editX(id);
+else if(a=="dx")await delX(id);
+else if(a=="sp"){if(await yes(pn(d.f)+" → "+pn(d.t)+" "+yen(d.m)+" を精算済みにしますか?","精算済みにする")){D.pay.push({id:uid(),f:d.f,t:d.t,amt:+d.m,d:td(),at:Date.now()});sv();rX();tt("✅ 精算済みにしました")}}
+else if(a=="dp"){if(await yes("この精算記録を取り消しますか?")){D.pay=D.pay.filter(x=>x.id!=id);sv();rX();tt("精算の記録を取り消しました")}}
+else if(a=="bkp")await bkPaste();else if(a=="bku")await bkUndo();});
+ra();})();
+</script></body></html>

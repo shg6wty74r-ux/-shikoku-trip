@@ -4,25 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>四国旅行 2026-2027</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 </head>
 <body>
   <h1>四国旅行 2026-2027</h1>
-  <p>Supabase接続テスト中...</p>
+  <p id="status">Supabase接続テスト中...</p>
 
   <script>
     const SUPABASE_URL = 'https://qltxyejkmucnlvazczyf.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFsdHh5ZWprbXVjbmx2YXpjenlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1ODU0MjQsImV4cCI6MjEwODE2MTQyNH0.Ikp2yC3Bfqxqj6-ekb3TzbLBectbzR8HF8zEDse4fPk';
+
     const { createClient } = window.supabase;
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const supabaseClient = createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+    const statusEl = document.getElementById('status');
 
-console.log("Supabase initialized:", supabaseClient);
+    async function testConnection() {
+      try {
+        const { error } = await supabaseClient.auth.getSession();
+        if (error) throw error;
+        statusEl.textContent = '✅ Supabase接続成功';
+        console.log('Supabase initialized:', supabaseClient);
+      } catch (e) {
+        statusEl.textContent = '❌ 接続失敗: ' + e.message;
+        console.error(e);
+      }
+    }
 
-    console.log("Supabase initialized:", supabase);
+    testConnection();
   </script>
 </body>
 </html>

@@ -13,7 +13,14 @@
   <script>
     const SUPABASE_URL = 'https://qltxyejkmucnlvazczyf.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFsdHh5ZWprbXVjbmx2YXpjenlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1ODU0MjQsImV4cCI6MjEwODE2MTQyNH0.Ikp2yC3Bfqxqj6-ekb3TzbLBectbzR8HF8zEDse4fPk';
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { createClient } = window.supabase;
+
+const supabaseClient = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+console.log("Supabase initialized:", supabaseClient);
 
     console.log("Supabase initialized:", supabase);
   </script>
